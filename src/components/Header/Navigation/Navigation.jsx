@@ -15,8 +15,8 @@ function Navigation() {
 
   return (
     <>
-      
-      <nav className='nav guest'>
+      {/* Тут закомментировал пока */}
+      {/*<nav className='nav guest'>
         <ul className='nav__list'>
           <li>
             <NavLink className='nav__guest-link' to='/signup'>Регистрация</NavLink>
@@ -25,7 +25,7 @@ function Navigation() {
             <NavLink className='nav__guest-link nav__guest-link_green' to='/signin'>Войти</NavLink>
          </li>
       </ul>
-      </nav>
+  </nav>*/}
 
       {/* Меню авторизованного пользователя */}
       <button type='button' className={`nav__btn ${isNavOpened && 'nav__btn_close'}`} onClick={handleNavClick}/>
