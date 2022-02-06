@@ -54,7 +54,7 @@
     margin-right: 30px;
 }
 
-.nav__link_account {
+.nav__link-account {
     height: 32px;
     width: 100px;
     padding: 8px 20px;
@@ -100,7 +100,7 @@
     border-bottom: 1px solid var(--black-color);
 }
 
-.nav__btn {
+.nav-btn {
     width: 44px;
     height: 44px;
     border: none;
@@ -108,7 +108,7 @@
     transition: linear 200ms;
 }
 
-.nav__btn_close {
+.nav-btn_close {
     width: 44px;
     height: 44px;
     border: none;

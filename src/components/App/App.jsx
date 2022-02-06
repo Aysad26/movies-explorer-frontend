@@ -12,7 +12,7 @@ import NotFound from "../NotFound/NotFound";
 
 function App() {
   return (
-    <div className='page__container'>
+    <div className='page'>
       <Switch>
         <Route path='/signup'>
           <Register/>

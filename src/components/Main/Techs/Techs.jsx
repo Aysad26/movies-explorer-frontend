@@ -4,11 +4,11 @@ import NavTab from "../NavTab/NavTab";
 function Techs() {
   return (
     <section id='techs' className='techs'>
-      <h2 className='techs__head'>Технологии</h2>
-      <h3 className='techs__head_h3'>7 технологий</h3>
-      <p className='techs__head_desc'>На курсе веб-разработки мы освоили технологии, которые применили в дипломном
+      <h2 className='techs-head'>Технологии</h2>
+      <h3 className='techs-head-h3'>7 технологий</h3>
+      <p className='techs-head-desc'>На курсе веб-разработки мы освоили технологии, которые применили в дипломном
         проекте.</p>
-      <div className='navTab techs__table'>
+      <div className='navTab techs-table'>
         <NavTab to='https://developer.mozilla.org/docs/Web/HTML' openNewTab={true} name='HTML' size='l'/>
         <NavTab to='https://developer.mozilla.org/docs/Web/CSS' openNewTab={true} name='CSS' size='l'/>
         <NavTab to='https://javascript.info/' openNewTab={true} name='JS' size='l'/>

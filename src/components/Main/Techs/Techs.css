@@ -5,7 +5,7 @@
     width: 100%;
 }
 
-.techs__head {
+.techs-head {
     font-weight: normal;
     font-size: 1.4rem;
     line-height: 27px;
@@ -13,7 +13,7 @@
     border-bottom: var(--black-color) 1px solid;
 }
 
-.techs__head_h3 {
+.techs-head-h3 {
     margin-top: 90px;
     font-weight: normal;
     font-size: 50px;
@@ -23,7 +23,7 @@
     letter-spacing: -0.04em;
 }
 
-.techs__head_desc {
+.techs-head-desc {
     margin: 26px auto 100px;
     font-weight: normal;
     font-size: 14px;
@@ -44,11 +44,11 @@
         padding: 70px 18px;
         background: white;
     }
-    .techs__head_h3 {
+    .techs-_head-h3 {
         font-size: 30px;
         line-height: 36px;
     }
-    .techs__head_desc {
+    .techs-head-desc {
         margin: 24px auto 50px;
         font-size: 11px;
         line-height: 16px;

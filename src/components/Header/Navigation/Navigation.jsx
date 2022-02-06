@@ -28,7 +28,7 @@ function Navigation() {
   </nav>*/}
 
       {/* Меню авторизованного пользователя */}
-      <button type='button' className={`nav__btn ${isNavOpened && 'nav__btn_close'}`} onClick={handleNavClick}/>
+      <button type='button' className={`nav-btn ${isNavOpened && 'nav-btn_close'}`} onClick={handleNavClick}/>
       <nav className={`nav ${isNavOpened && 'nav__mobile'}`}>
         <div activeClassName='nav__empty-object'></div>
         <ul className={`nav__list ${isNavOpened && 'nav__list_mobile'}`}>
@@ -41,9 +41,9 @@ function Navigation() {
         <ul className={`nav__list ${isNavOpened && 'nav__list_mobile'}`}>
           <li>
             <NavLink
-              activeClassName='nav__link_account'
+              activeClassName='nav__link-account'
               onClick={handleOffNavClick}
-              className={`nav__link_account ${isNavOpened && 'nav__link_mobile'}`}
+              className={`nav__link-account ${isNavOpened && 'nav__link_mobile'}`}
               to='/profile'>
                 Аккаунт 
             </NavLink>

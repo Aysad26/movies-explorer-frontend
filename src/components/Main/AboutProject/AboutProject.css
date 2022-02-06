@@ -19,7 +19,7 @@
     grid-column-gap: 40px;
 }
 
-.aboutP__table_head {
+.aboutP__table-head {
     font-weight: normal;
     font-size: 1.25rem;
     line-height: 24px;
@@ -27,7 +27,7 @@
     margin: 0 0 20px 0;
 }
 
-.aboutP__table_desc {
+.aboutP__table-desc {
     font-weight: normal;
     font-size: 0.9rem;
     line-height: 20px;
@@ -41,17 +41,17 @@
     text-align: center;
 }
 
-.aboutP__line_item:first-child {
+.aboutP__line-item:first-child {
     margin: 0 auto;
     flex-grow: 1;
 }
 
-.aboutP__line_item {
+.aboutP__line-item {
     margin: 0 auto;
     flex-grow: 4;
 }
 
-.aboutP__line_item_head#one {
+.aboutP__line-item-head#one {
     margin: 0 auto;
     padding: 9px 14px;
     background: var(--green-color);
@@ -62,7 +62,7 @@
     line-height: 17px;
 }
 
-.aboutP__line_item_head#two {
+.aboutP__line-item-head#two {
     margin: 0 auto;
     padding: 9px 85px;
     background: var(--gray-color-dark);
@@ -71,7 +71,7 @@
     line-height: 17px;
 }
 
-.aboutP__line_item_desc {
+.aboutP__line-item-desc {
     font-weight: 500;
     font-size: 14px;
     line-height: 17px;
@@ -87,7 +87,7 @@
         margin: 70px auto 93px auto;
     }
 
-    .aboutP__line_item_head#one {
+    .aboutP__line-item-head#one {
         font-size: 11px;
         white-space: nowrap;
         line-height: 13px;
@@ -95,7 +95,7 @@
         padding-left: 0;
     }
 
-    .aboutP__line_item_head#two {
+    .aboutP__line-item-head#two {
         font-size: 11px;
         white-space: nowrap;
         line-height: 13px;
@@ -109,37 +109,34 @@
         padding: 70px 18px;
     }
 
-    .aboutP__table_desc {
-        margin-bottom: 56px;
-    }
-
     .aboutP__table {
         margin: 60px auto 0 auto;
         grid-template-columns: 1fr;
     }
 
-    .aboutP__table_head {
+    .aboutP__table-head {
         font-size: 18px;
         line-height: 22px;
     }
 
-    .aboutP__table_desc {
+    .aboutP__table-desc {
         font-size: 11px;
         line-height: 16px;
+        margin-bottom: 56px;
     }
 
-    .aboutP__line_item_head#one {
+    .aboutP__line-item-head#one {
         font-size: 11px;
         white-space: nowrap;
         line-height: 13px;
     }
 
-    .aboutP__line_item_head#two {
+    .aboutP__line-item-head#two {
         font-size: 11px;
         white-space: nowrap;
         line-height: 13px;
     }
-    .aboutP__line_item_desc {
+    .aboutP__line-item-desc {
         font-size: 11px;
         line-height: 13px;
     }

@@ -28,7 +28,7 @@
     box-sizing: border-box;
 }
 
-.aboutMe__table_head {
+.aboutMe__table-head {
     margin: 0;
     font-weight: normal;
     font-size: 50px;
@@ -36,14 +36,14 @@
     letter-spacing: -0.04em;
 }
 
-.aboutMe__table_subtitle {
+.aboutMe__table-subtitle {
     margin: 18px 0 26px;
     font-weight: 500;
     font-size: 18px;
     line-height: 20px;
 }
 
-.aboutMe__table_desc {
+.aboutMe__table-desc {
     margin: 0;
     font-weight: normal;
     font-size: 14px;
@@ -51,7 +51,7 @@
     max-width: 100%;
 }
 
-.aboutMe__table_avatar {
+.aboutMe__table-avatar {
     width: 270px;
     max-height: 327px;
     border-radius: 10px;
@@ -60,22 +60,22 @@
     overflow: hidden;
 }
 
-.aboutMe__table_links {
+.aboutMe__table-links {
     margin: 99px 0 0;
     padding: 0;
     list-style: none;
     display: flex;
 }
 
-.aboutMe__table_links li {
+.aboutMe__table-links li {
     margin-right: 20px;
 }
 
-.aboutMe__table_links li:last-child {
+.aboutMe__table-links li:last-child {
     margin-right: 0;
 }
 
-.aboutMe__table_links_item {
+.aboutMe__table-links-item {
     color: var(--white-color);
     text-decoration: none;
     font-weight: 500;
@@ -84,7 +84,7 @@
     transition: linear 400ms;
 }
 
-.aboutMe__table_links_item:hover, .aboutMe__table_links_item:focus, .aboutMe__table_links_item:active {
+.aboutMe__table-links-item:hover, .aboutMe__table-links-item:focus, .aboutMe__table-links-item:active {
     opacity: 50%;
 }
 
@@ -102,31 +102,31 @@
         max-width: 364px;
     }
 
-    .aboutMe__table_head {
+    .aboutMe__table-head {
         font-size: 40px;
         line-height: 40px;
         max-width: 100%;
     }
 
-    .aboutMe__table_subtitle {
+    .aboutMe__table-subtitle {
         font-size: 12px;
         line-height: 18px;
         margin: 16px 0 20px;
         max-width: 100%;
     }
 
-    .aboutMe__table_desc {
+    .aboutMe__table-desc {
         font-size: 12px;
         line-height: 18px;
         max-width: 100%;
     }
 
-    .aboutMe__table_avatar {
+    .aboutMe__table-avatar {
         margin-bottom: 40px;
         max-width: 100%;
     }
 
-    .aboutMe__table_links {
+    .aboutMe__table-links {
         margin-top: 87px;
     }
 }
@@ -145,28 +145,28 @@
         padding-left: 0;
     }
 
-    .aboutMe__table_avatar {
+    .aboutMe__table-avatar {
         margin-bottom: 40px;
         min-height: 325px;
         max-height: 325px;
         width: 100%;
     }
 
-    .aboutMe__table_links {
+    .aboutMe__table-links {
         margin-top: 40px;
     }
 
-    .aboutMe__table_head {
+    .aboutMe__table-head {
         font-size: 30px;
         line-height: 36px;
     }
 
-    .aboutMe__table_subtitle {
+    .aboutMe__table-subtitle {
         font-size: 11px;
         line-height: 16px;
         margin: 20px 0 20px;
     }
-    .aboutMe__table_desc {
+    .aboutMe__table-desc {
         font-size: 11px;
         line-height: 16px;
     }
