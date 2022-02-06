@@ -1,6 +1,6 @@
 .movies {
     margin: 80px 70px;
-    width: calc(90% + 19px * 2);
+    width: 100%;
     display: flex;
     flex-direction: column;
 }

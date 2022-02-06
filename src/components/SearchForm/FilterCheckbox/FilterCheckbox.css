@@ -6,7 +6,6 @@
   line-height: 18px;
   cursor: pointer;
   justify-content: center;
-  margin-bottom: 39px;
 }
 
 .filtercheckbox__input {
@@ -50,10 +49,4 @@
 .filtercheckbox__input:not(checked) + .filtercheckbox__visible-input {
   transition: 0.3s;
   background-color: var(--green-color);
-}
-
-@media screen and (max-width: 850px) {
-  .filtercheckbox {
-      margin-top: 38px;
-  }
 }
