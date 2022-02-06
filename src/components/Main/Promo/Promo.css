@@ -2,11 +2,12 @@
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    width: 95%;
+    width: calc(100% - 40px * 2);
     background: var(--gray-color);
     border-radius: 10px;
     justify-content: center;
     margin-top: 20px;
+    box-sizing: border-box;
 }
 
 .promo__head {
@@ -21,9 +22,9 @@
     letter-spacing: -0.04em;
 }
 
-@media all and (max-width: 768px) {
+@media all and (max-width: 769px) {
     .promo {
-        width: 100%;
+        width: calc(100% - 20px * 2);
     }
 
     .promo__head {
@@ -34,7 +35,7 @@
 
 @media all and (max-width: 425px) {
     .promo {
-        width: 95%;
+        width: calc(100% - 14px * 2);
     }
     .promo__head {
         font-size: 29px;

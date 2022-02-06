@@ -1,5 +1,7 @@
 .portfolio {
-    margin: 0 70px 125px;
+    padding:0 70px 125px 70px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .portfolio__head {
@@ -17,6 +19,7 @@
     list-style: none;
     padding: 0;
     flex-direction: column;
+    width: 100%;
 }
 
 .portfolio__links_item {
@@ -52,14 +55,27 @@
 
 @media screen and (max-width: 850px) {
     .portfolio {
-        margin: 0 30px 90px;
+        padding:0 50px 90px 50px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+}
+
+@media screen and (max-width: 700px) {
+  
+    .portfolio__links_item a {
+        font-size: 18px;
+        line-height: 28px;
     }
 }
 
 @media screen and (max-width: 425px) {
     .portfolio {
-        margin: 0 9px 70px;
+        padding:0 14px 70px 14px;
+        width: 100%;
+        box-sizing: border-box;
     }
+
     .portfolio__links_item a {
         font-size: 18px;
         line-height: 28px;

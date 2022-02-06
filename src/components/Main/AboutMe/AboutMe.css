@@ -1,5 +1,7 @@
 .aboutMe {
-    padding: 100px 70px;
+    padding: 110px 70px 100px 70px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .aboutMe__head {
@@ -21,6 +23,9 @@
 
 .aboutMe__table-container {
     margin: 0;
+    max-width: 600px;
+    padding-right: 20px;
+    box-sizing: border-box;
 }
 
 .aboutMe__table_head {
@@ -43,11 +48,11 @@
     font-weight: normal;
     font-size: 14px;
     line-height: 22px;
-    max-width: 600px;
+    max-width: 100%;
 }
 
 .aboutMe__table_avatar {
-    max-width: 270px;
+    width: 270px;
     max-height: 327px;
     border-radius: 10px;
     object-fit: cover;
@@ -85,31 +90,40 @@
 
 @media screen and (max-width: 850px) {
     .aboutMe {
-        padding: 90px 30px;
+        padding: 90px 50px 90px 50px;
     }
 
     .aboutMe__table {
-        flex-direction: column-reverse;
+       flex-direction: column-reverse;
+       max-width: 100%;
+    }
+
+    .aboutMe__table-container {
+        max-width: 364px;
     }
 
     .aboutMe__table_head {
         font-size: 40px;
         line-height: 40px;
+        max-width: 100%;
     }
 
     .aboutMe__table_subtitle {
         font-size: 12px;
         line-height: 18px;
         margin: 16px 0 20px;
+        max-width: 100%;
     }
 
     .aboutMe__table_desc {
         font-size: 12px;
         line-height: 18px;
+        max-width: 100%;
     }
 
     .aboutMe__table_avatar {
         margin-bottom: 40px;
+        max-width: 100%;
     }
 
     .aboutMe__table_links {
@@ -119,7 +133,7 @@
 
 @media screen and (max-width: 425px) {
     .aboutMe {
-        padding: 70px 9px;
+        padding: 70px 14px;
     }
 
     .aboutMe__table {
@@ -127,8 +141,15 @@
         flex-direction: column-reverse;
     }
 
+    .aboutMe__table-container {
+        padding-left: 0;
+    }
+
     .aboutMe__table_avatar {
         margin-bottom: 40px;
+        min-height: 325px;
+        max-height: 325px;
+        width: 100%;
     }
 
     .aboutMe__table_links {
