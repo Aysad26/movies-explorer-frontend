@@ -138,17 +138,23 @@
 
     .movies-card__item {
         margin: 0;
-        width: 100%;
-        max-height: 168px;
+        max-width: 100%;
+        max-height: 240px;
+        min-height: 240px;
         display: flex;
         flex-direction: row;
-        justify-content: stretch;
-        align-items: center;
+        justify-content: center;
+        align-items: stretch;
+        background-color: aqua;
+        overflow: hidden;
     }
 
     .movies-card__item_img {
+        min-width: 100%;
+        max-height: 100%;
         margin: 0;
-        width: 100%;
+        max-width: 100%;
+        justify-self: stretch;
     }
 
     .movies-card__info {
@@ -178,4 +184,12 @@
     .movies-card__info_delete {
         opacity: 1;
     }
+}
+
+@media screen and (max-width: 450px) {
+    .movies-card__item {
+        max-height: 168px;
+        min-height: 168px;
+    }
+
 }
