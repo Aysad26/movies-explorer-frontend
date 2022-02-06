@@ -9,6 +9,9 @@ function Movies() {
       <SearchForm/>
       {/*<Preloader />*/}
       <MoviesCardList/>
+      <section className='movies-card-list__container'>
+        <button className='movies-card-list__btn'>Ещё</button>
+      </section>
     </main>
   )
 }

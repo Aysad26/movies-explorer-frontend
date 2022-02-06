@@ -13,9 +13,6 @@ function MoviesCardList(props) {
         ))}
 
       </section>
-      <section className='movies-card-list__container'>
-        <button className='movies-card-list__btn'>Ещё</button>
-      </section>
     </>
   )
 }
