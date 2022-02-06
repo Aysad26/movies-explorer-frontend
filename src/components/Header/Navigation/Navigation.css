@@ -147,7 +147,7 @@
 }
 
 @media screen and (min-width: 850px) {
-    .nav__btn {
+    .nav-btn {
         display: none;
     }
 
