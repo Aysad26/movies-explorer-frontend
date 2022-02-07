@@ -1,0 +1,93 @@
+.search {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width: calc(100% - 70px * 2);
+    border-bottom: rgba(170, 170, 170, .2) 1px solid;
+    align-items: center;
+    padding: 80px 0 50px 0;
+    box-sizing: border-box;
+}
+
+.search__item {
+    width: 100%;
+    display: flex;
+    flex-grow: 6;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    transition: linear 100ms;
+    margin-bottom: 30px;
+}
+
+.search__item_input {
+    background-color: var(--gray-light-color);
+    padding: 15px 22px;
+    border: none;
+    border-radius: 4px;
+    -webkit-appearance: none;
+    outline: none;
+    vertical-align: middle;
+    width: 100%;
+    color: var(--gray-color-most-dark);
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 18px;
+    margin-right: 10px;
+}
+.search__item_input::placeholder {
+    color: var(--gray-color-most-dark);
+}
+.search__item_input:hover, .search__item_input:focus, .search__item_input:active {
+    -webkit-box-shadow: 0 5px 44px 2px rgba(66, 133, 244, 0.2);
+    -moz-box-shadow: 0 5px 44px 2px rgba(66, 133, 244, 0.2);
+    box-shadow: 0 5px 44px 2px rgba(66, 133, 244, 0.2);
+}
+
+.search__item_button {
+    cursor: pointer;
+    width: 70px;
+    height: 44px;
+    border: none;
+    border-radius: 40px;
+    background-color: var(--green-color);
+    transition: linear 300ms;
+    color: var(--page-color);
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 18px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+}
+
+.search__item_button:hover, .search__item_button:focus, .search__item_button:active {
+    opacity: 80%;
+}
+
+@media screen and (max-width: 769px) {
+    .search {
+        flex-direction: column;
+        padding-bottom: 57px;
+        width: calc(100% - 30px * 2);
+        padding: 80px 0 39px 0;
+    }
+    .search__item {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .search {
+        width: calc(100% - 14px * 2);
+        padding: 80px 0 43px 0;
+    }
+
+    .search__item {
+        width: 100%;
+        margin-bottom: 44px;
+    }
+}
