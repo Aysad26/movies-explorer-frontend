@@ -83,6 +83,11 @@
     transition: linear 200ms;
 }
 
+.register_btn-disabled {
+    background: #8B8B8B;
+    cursor: auto;
+}
+
 .register_btn:hover, .register_btn:focus, .register_btn:active {
     opacity: .8;
     outline: none;

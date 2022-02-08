@@ -7,6 +7,11 @@
     width: 100%;
 }
 
+.movies-card-list__btn:hover, .movies-card-list__btn:active, .movies-card-list__btn:focus {
+    opacity: .8;
+    outline: none;
+}
+
 .movies-card-list__btn {
     padding: 11px 0 9px 0;
     outline: none;
@@ -25,9 +30,17 @@
     transition: linear 200ms;
 }
 
-.movies-card-list__btn:hover, .movies-card-list__btn:active, .movies-card-list__btn:focus {
-    opacity: .8;
-    outline: none;
+.movies-card-list__btn_hidden {
+    display: none;
+}
+
+.movies-card-list__span {
+    text-align: center;
+    margin: 80px auto 0;
+}
+
+.movies-card-list__span_hidden {
+    display: none;
 }
 
 @media screen and (max-width: 769px) {
