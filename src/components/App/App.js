@@ -95,6 +95,34 @@ function App() {
     });
   }
 
+  function initData(myInfo) {
+    return Promise.all([moviesApi.getMovies(), api.getSavedMovies()])
+      .then(([movies, myMovies]) => {
+        setCurrentUser(myInfo);
+        setMovies(movies);
+        setSavedMovies(myMovies);
+        setLoggedIn(true);
+      })
+      .catch(err => console.log(err));
+  }
+
+  function handleRegister(data) {
+    auth.register(data)
+      .then((data) => initData(data))
+      .then(() => {
+        setLoggedIn(true);
+        history.push('/movies');
+      })
+      .catch(() => {
+        setInfoTooltip({
+          ...infoTooltip,
+          isOpen: true,
+          image: statusErrorImage,
+          message: "statusErrorMessage || statusErrorText"
+        });
+      });
+  }
+
   // Обработчик по кнопке Зарегистрироваться
   function handleRegister(evt, name, password, email) {
     loadingPopup(true)

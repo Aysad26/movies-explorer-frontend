@@ -5,7 +5,7 @@ class Auth {
     this.baseUrl = options.baseUrl;
   }
 
-  register = (name, email, password) => {
+  register = ({name, email, password}) => {
     return fetch(`${this.baseUrl}/signup`, {
       method: 'POST',
       headers: {
@@ -58,5 +58,5 @@ class Auth {
 }
 
 export const auth = new Auth({
-  baseUrl: 'https://api.mesto.aysad26.nomoredomains.work',
+  baseUrl: 'http://api.mesto.aysad26.nomoredomains.work',
 })
