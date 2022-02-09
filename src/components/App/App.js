@@ -29,28 +29,86 @@ import * as moviesApi from '../../utils/MoviesApi';
 
 function App() {
   const history = useHistory();
-  const location = useLocation();
-  const [isLoading, setIsLoading] = useState(false);
-  const [loggedIn, setLoggedIn] = useState(false);                                                   // Стейт-переменная статус пользователя, вход в систему
-  const [movies, setMovies] = useState([]);
+
+  const [currentUser, setCurrentUser] = useState({});
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [isLoading, setIsLoaging] = useState(true);
+
   const [savedMovies, setSavedMovies] = useState([]);
-  const [isShortMovies, setIsShortMovies] = useState(false);
-  const [notFound, setNotFound] = useState(false);
   const [moviesError, setMoviesError] = useState(false);
-  const [apiMovies, setApiMovies] = useState([]);
+
   const [infoTooltip, setInfoTooltip] = useState({                                                   // Стейт информационного попапа статуса
     isOpen: false,
     image: statusSuccessImage,
     message: statusSuccessMessage
   });
-  const [currentUser, setCurrentUser] = useState({                                                   // Стейт данные текущего пользователя
-    _id: '',
-    name: '',
-    email: ''
-  });
 
+  // при логине, если получаем пользователя то обновляем стейты
+  useEffect(() => {
+    setIsLoaging(true);
+    auth.getContent()
+      .then(data => {
+        handleLoggedIn();
+        setCurrentUser(data);
+      })
+      .catch(err => {
+        console.log(err);
+      })
+      .finally(() => setIsLoaging(false))
+  }, [loggedIn]);
+
+  // при загрузке страницы получаем данные избранных пользователем фильмов
+  useEffect(() => {
+    if(loggedIn){
+      api.getSavedMovies()
+      .then((data) => {
+        setSavedMovies(data);
+        setMoviesError(false);
+      })
+      .catch(err => {
+        setMoviesError(true);
+        console.log(err);
+      })
+    }
+  }, [loggedIn]);
+
+  // ---ОБРАБОТЧИКИ---
+  // обработчик установки стейта входа/логина пользователя
+  function handleLoggedIn() {
+    setLoggedIn(true);
+  };
+
+  // обработчик регистрации пользователя
+  function handleRegister(name, email, password){
+    api.register(name, email, password)
+      .then(data => {
+        if(data){
+          console.log(data);
+          handleLogin(data.email, password);
+        } 
+      })
+      .catch(({ message, statusCode }) => {
+        setInfoTooltip({
+          ...infoTooltip,
+          isOpen: true,
+          message: statusSuccessMessage,
+          image: statusSuccessImage,
+        });
+      })
+  };
+
+
+  const location = useLocation();
+  
+                                                    // Стейт-переменная статус пользователя, вход в систему
+  const [movies, setMovies] = useState([]);
+  const [isShortMovies, setIsShortMovies] = useState(false);
+  const [notFound, setNotFound] = useState(false);
+  const [apiMovies, setApiMovies] = useState([]);
+
+ 
   function loadingPopup(bullion) {
-    setIsLoading(bullion);
+    setIsLoaging(bullion);
     setInfoTooltip({
       ...infoTooltip,
       isOpen: true,
@@ -72,7 +130,7 @@ function App() {
     loadingPopup(true)
     auth.authorize(email, password)
       .then((data) => {
-        setIsLoading(false)
+        setIsLoaging(false)
         setInfoTooltip({isOpen: false})
         setLoggedIn(true);
         setCurrentUser({...data});
@@ -95,24 +153,29 @@ function App() {
     });
   }
 
-  // Обработчик по кнопке Зарегистрироваться
-  function handleRegister(evt, name, password, email) {
-    loadingPopup(true)
-    auth.register(name, password, email)
+  function handleRegister(name, email, password){
+    auth.register(name, email, password)
       .then((data) => {
         setCurrentUser({...data});
-        setIsLoading(false);
+        setIsLoaging(false);
         setInfoTooltip({
           ...infoTooltip,
           isOpen: true,
           image: statusSuccessImage,
-          message: statusSuccessMessage
+          message: 'Произошла ошибка!'
         });
         setLoggedIn(true);
         history.push('/movies');
       })
-      .catch(err => handleError(evt.target, err));                                                                // Обработка ошибки handleError();
-  }
+      .catch(() => {
+        setInfoTooltip({
+          ...infoTooltip,
+          isOpen: true,
+          image: statusSuccessImage,
+          message: 'Произошла ошибка!'
+        });
+      })
+  };
 
   // // Обработчик обновления информации пользователя
   function handleUpdateUser(evt, name, email) {
@@ -120,7 +183,7 @@ function App() {
     api.editProfile(name, email)
       .then(data => {
         setCurrentUser({...data});
-        setIsLoading(false);
+        setIsLoaging(false);
         setInfoTooltip({
           ...infoTooltip,
           isOpen: true,
@@ -192,7 +255,7 @@ function App() {
   }
 
   function searchMovies(keyword) {
-    setIsLoading(true);
+    setIsLoaging(true);
     setMovies([]);
     setNotFound(false);
     setMoviesError(false);
@@ -216,19 +279,19 @@ function App() {
           setMovies([]);
         })
         .finally(() => {
-          setIsLoading(false);
+          setIsLoaging(false);
         })
     } else {
       const searchResult = searchMoviesByKeyword(apiMovies, keyword);
 
       if (searchResult.length === 0) {
         setMovies([]);
-        setIsLoading(false);
+        setIsLoaging(false);
         setNotFound(true);
       } else if (searchResult.length !== 0) {
         localStorage.setItem('movies', JSON.stringify(searchResult));
         setMovies(JSON.parse(localStorage.getItem('movies')));
-        setIsLoading(false);
+        setIsLoaging(false);
       } else {
         setMoviesError(true);
         setMovies([]);
@@ -315,12 +378,12 @@ function App() {
               <Header isLogin={loggedIn}/>
               <SavedMovies isLoading={isLoading}
                            movies={savedMovies}
-                           moviesError={moviesError}
                            notFound={notFound}
                            handleSearchSavedMovies={searchSavedMovies}
                            isShortMovies={isShortMovies}
                            handleDeleteMovie={deleteMovie}
-                           handleShortMovies={handleShortMovies}/>
+                           handleShortMovies={handleShortMovies}
+                           moviesError={moviesError}/>
               <Footer/>
             </ProtectedRoute>
             <ProtectedRoute path='/movies'>

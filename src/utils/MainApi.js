@@ -63,7 +63,7 @@ class MainApi {
 }
 
 export const api = new MainApi({
-  baseUrl: 'https://api.mesto.aysad26.nomoredomains.rocks',
+  baseUrl: 'https://api.mesto.aysad26.nomoredomains.work',
   headers: {
     authorization: `Bearer ${localStorage.getItem('jwt')}`,
     'Content-Type': 'application/json'
