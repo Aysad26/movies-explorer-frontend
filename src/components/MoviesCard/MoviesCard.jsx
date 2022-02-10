@@ -23,8 +23,9 @@ function MoviesCard(props) {
 
   const isLikedMovie = useCallback(() => {
     if (localStorage.getItem('savedMovies')) {
-      let savedMovies = JSON.parse(localStorage.getItem("savedMovies"));
-      if (savedMovies.some(movie => movie.nameRU === props.movie.nameRU)) {
+      let savedMovies = Array.from(JSON.parse(localStorage.getItem("savedMovies")));
+      console.log (savedMovies);
+      if (savedMovies.some((movie) => movie.nameRU === props.movie.nameRU)) {
         setIsSaved(true);
       }
     }
