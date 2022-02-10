@@ -61,7 +61,7 @@ function MoviesCard(props) {
         {props.isSavedMovies ?
           <button type='button' className='movies-card__item_delete' onClick={handleDeleteMovie}/>
           : <button type='button' className={`${isSaved ? 'movies-card__info_saved' : 'movies-card__info_save'}`}
-                    onClick={!isSaved ? handleSaveMovie : handleDislikeMovie}>{!isSaved && 'Сохранить'}</button>}
+                    onClick={!isSaved ? handleSaveMovie : handleDislikeMovie}></button>}
       </div>
       <div className='movies-card__item'>
         <a rel="noreferrer" target='_blank' href={props.isSavedMovies ? props.movie.trailer : props.movie.trailerLink}>
