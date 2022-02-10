@@ -6,3 +6,4 @@ const handleOriginalResponse = (res) => {
 }
 
 export default handleOriginalResponse;
+

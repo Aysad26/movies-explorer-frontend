@@ -1,5 +1,6 @@
+
 import './App.css';
-import {Switch, Route, useHistory, useLocation} from 'react-router-dom';
+import {Switch, Route, useHistory, useLocation} from "react-router-dom";
 import About from "../Main/Main";
 import Movies from "../Movies/Movies";
 import SavedMovies from "../SavedMovies/SavedMovies";
@@ -79,7 +80,7 @@ function App() {
         history.push('/movies');
         window.location.reload();
       })
-      .catch(err => handleError(e.target, err));                                          // По указанным Логину и Паролю пользователь не найден. Проверьте введенные данные и повторите попытку.
+      .catch(err => handleError());                                          // По указанным Логину и Паролю пользователь не найден. Проверьте введенные данные и повторите попытку.
   }
 
 
@@ -94,6 +95,7 @@ function App() {
       message: statusErrorMessage || statusErrorText
     });
   }
+
 
   // Обработчик по кнопке Зарегистрироваться
   function handleRegister(evt, name, password, email) {
@@ -111,7 +113,7 @@ function App() {
         setLoggedIn(true);
         history.push('/movies');
       })
-      .catch(err => handleError(evt.target, err));                                                                // Обработка ошибки handleError();
+      .catch(err => handleError());                                                                // Обработка ошибки handleError();
   }
 
   // // Обработчик обновления информации пользователя
@@ -315,12 +317,12 @@ function App() {
               <Header isLogin={loggedIn}/>
               <SavedMovies isLoading={isLoading}
                            movies={savedMovies}
+                           moviesError={moviesError}
                            notFound={notFound}
                            handleSearchSavedMovies={searchSavedMovies}
                            isShortMovies={isShortMovies}
                            handleDeleteMovie={deleteMovie}
-                           handleShortMovies={handleShortMovies}
-                           moviesError={moviesError}/>
+                           handleShortMovies={handleShortMovies}/>
               <Footer/>
             </ProtectedRoute>
             <ProtectedRoute path='/movies'>

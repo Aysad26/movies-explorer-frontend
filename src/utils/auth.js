@@ -5,7 +5,7 @@ class Auth {
     this.baseUrl = options.baseUrl;
   }
 
-  register = ({name, email, password}) => {
+  register = (name, email, password) => {
     return fetch(`${this.baseUrl}/signup`, {
       method: 'POST',
       headers: {
@@ -21,7 +21,6 @@ class Auth {
         }
       })
   }
-
 
   authorize = (email, password) => {
     return fetch(`${this.baseUrl}/signin`, {
@@ -40,23 +39,21 @@ class Auth {
       })
   }
 
-  getContent() {
-    return fetch(this._baseUrl, {
+  getContent = (token) => {
+    return fetch(`${this.baseUrl}/users/me`, {
+      method: 'GET',
       headers: {
-        authorization: this._token,
+        'Content-Type': 'application/json',
+        "Authorization": `Bearer ${token}`
       },
-      credentials: 'include',
     })
-    .then(res => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Ошибка: ${res.status}`);
-    })
+      .then(handleOriginalResponse)
+      .then(data => {
+        return data;
+      })
   }
-
 }
 
 export const auth = new Auth({
-  baseUrl: 'http://api.mesto.aysad26.nomoredomains.work',
+  baseUrl: 'https://api.mesto.aysad26.nomoredomains.work',
 })
