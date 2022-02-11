@@ -25,9 +25,8 @@ function SearchForm(props) {
   return (
     <form className='search' onSubmit={props.isSavedMovies ? onSubmitSavedMovies : onSubmit}>
       <div className='search__item'>
-        <div>
-          <div className='register__input-container'>
-            <input
+
+          <input
               className='search__item_input'
               name='search'
               required
@@ -38,9 +37,8 @@ function SearchForm(props) {
             />
             <span className={`register__form_span ${isSearchFormValid && 'register__form_span_hidden'} `}
             >Это поле обязательно</span>
-          </div>
-        </div>
-        <button className='search__item_button' type='submit'/>
+
+        <button className='search__item_button' type='submit'>Найти</button>
       </div>
       <FilterCheckbox handleShortMovies={props.handleShortMovies} isShortMovies={props.isShortMovies}/>
     </form>
