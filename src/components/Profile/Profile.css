@@ -42,6 +42,9 @@
     font-weight: normal;
     font-size: 11px;
     line-height: 13px;
+    outline: none;
+    border: none;
+    text-align: right;
 }
 
 .profile__setup {
@@ -53,12 +56,18 @@
 
 .profile__setup_edit {
     margin: 0;
+    text-decoration: none;
+    color: var(--green-color);
     font-weight: normal;
     font-size: 13px;
     line-height: 16px;
-    text-decoration: none;
-    color: var(--white-color);
+    transition: linear 300ms;
+    outline: none;
+    border: none;
+    background: none;
+    cursor: pointer;
 }
+
 
 .profile__setup_out {
     margin-top: 16px;
@@ -67,6 +76,11 @@
     line-height: 16px;
     color: #EE3465;
     text-decoration: none;
+    transition: linear 300ms;
+    outline: none;
+    border: none;
+    background: none;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 450px) {

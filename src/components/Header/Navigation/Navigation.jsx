@@ -3,7 +3,7 @@ import {NavLink} from "react-router-dom";
 import {useState} from "react";
 
 function Navigation({isLogin}) {
-  const [isNavOpened, setIsNavOpened] = useState(false);                                        
+  const [isNavOpened, setIsNavOpened] = useState(false);
 
   function handleNavClick() {
     setIsNavOpened(!isNavOpened);
@@ -38,13 +38,13 @@ function Navigation({isLogin}) {
                   onClick={handleOffNavClick}
                   className={`nav__link-account ${isNavOpened && 'nav__link_mobile'}`}
                   to='/profile'>
-                  Аккаунт 
+                  Аккаунт
                </NavLink>
                </li>
             </ul>
           </nav>
         </>
-        : <nav className='nav guest'>
+        : <nav className='nav__guest'>
           <ul className='nav__list'>
             <li>
               <NavLink className='nav__guest-link' to='/signup'>Регистрация</NavLink>

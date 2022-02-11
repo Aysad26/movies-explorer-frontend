@@ -14,7 +14,7 @@
     opacity: 0;
 }
 
-.guest {
+.nav__guest {
     justify-content: flex-end;
 }
 
@@ -120,6 +120,7 @@
     .nav {
         display: none;
     }
+
 }
 
 .nav__mobile {
@@ -165,4 +166,6 @@
     .nav__link {
         margin-right: 14px;
     }
+
+
 }
