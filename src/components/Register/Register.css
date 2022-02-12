@@ -81,11 +81,16 @@
     color: var(--white-color);
     cursor: pointer;
     transition: linear 200ms;
+    opacity: 0.5;
 }
 
 .register_btn-disabled {
-    background: #8B8B8B;
+    background: #ececec;
     cursor: auto;
+}
+.register_btn-disabled:hover, .register_btn-disabled:focus, .register_btn-disabled:active {
+  opacity: .5;
+  outline: none;
 }
 
 .register_btn:hover, .register_btn:focus, .register_btn:active {

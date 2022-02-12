@@ -244,10 +244,10 @@ function App() {
     setSavedMovies(searchResult);
   }
 
-  function saveMovie(movie) {
+  const saveMovie = (movie) => {
     api.saveMovie(movie)
       .then((data) => {
-        const movies = [...savedMovies, data];
+        const movies = [data, ...savedMovies];
         setSavedMovies(prev => ([...prev, data]));
         localStorage.setItem('savedMovies', JSON.stringify(movies))
       })
