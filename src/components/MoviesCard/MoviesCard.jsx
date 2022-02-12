@@ -41,9 +41,9 @@ function MoviesCard(props) {
   }
 
   function handleDislikeMovie() {
-    const savedMovies = JSON.parse(localStorage.getItem('savedMovies'));
-    const card = savedMovies.find(movie => movie.nameRU === props.movie.nameRU);
-    props.handleDeleteMovie(card._id);
+    let savedMovies = Array.from(JSON.parse(localStorage.getItem("savedMovies")));
+    const movie = savedMovies.find(movie => movie.nameRU === props.movie.nameRU);
+    props.handleDeleteMovie(movie);
     setIsSaved(false);
   }
 
