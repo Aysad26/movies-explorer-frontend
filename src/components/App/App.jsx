@@ -71,7 +71,7 @@ function App() {
   // Обработчик по кнопке Войти
   function handleLogin(e, email, password) {
     loadingPopup(true)
-    auth.authorize(email, password)
+    api.login(email, password)
       .then((data) => {
         setIsLoading(false)
         setInfoTooltip({isOpen: false})
@@ -100,7 +100,7 @@ function App() {
   // Обработчик по кнопке Зарегистрироваться
   function handleRegister(evt, name, password, email) {
     loadingPopup(true)
-    auth.register(name, password, email)
+    api.register(name, password, email)
       .then((data) => {
         setCurrentUser({...data});
         setIsLoading(false);
@@ -244,18 +244,16 @@ function App() {
     setSavedMovies(searchResult);
   }
 
-  const saveMovie = (movie) => {
-    api.saveMovie(movie)
-      .then((data) => {
-        const movies = [data, ...savedMovies];
-        setSavedMovies(prev => ([...prev, data]));
-        localStorage.setItem('savedMovies', JSON.stringify(movies))
+  function saveMovie(movie) {
+    return api.saveMovie(movie)
+      .then((movie) => {
+        setSavedMovies([savedMovies, movie])
       })
       .catch(err => console.log(`Error: ${err}`));
   }
 
   function deleteMovie(movieId) {
-    api.deleteMovie(movieId)
+    return api.deleteMovie(movieId)
       .then(() => {
         const filteredSavedMovies = savedMovies.filter((item) => {
           return item._id !== movieId

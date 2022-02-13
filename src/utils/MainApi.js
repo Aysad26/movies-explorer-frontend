@@ -6,6 +6,55 @@ class MainApi {
     this.headers = options.headers;
   }
 
+  register = (name, email, password) => {
+    return fetch(`${this.baseUrl}/signup`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({name, email, password})
+    })
+      .then(handleOriginalResponse)
+      .then(data => {
+        if (data.token) {
+          localStorage.setItem('jwt', data.token);
+          return data;
+        }
+      })
+  }
+
+  login = (email, password) => {
+    return fetch(`${this.baseUrl}/signin`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({password, email})
+    })
+      .then(handleOriginalResponse)
+      .then(data => {
+        if (data.token) {
+          localStorage.setItem('jwt', data.token);
+          return data;
+        }
+      })
+  }
+
+  getContent = (token) => {
+    return fetch(`${this.baseUrl}/users/me`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        "Authorization": `Bearer ${token}`
+      },
+    })
+      .then(handleOriginalResponse)
+      .then(data => {
+        return data;
+      })
+  }
+
+
   getUserInfo() {
     return fetch(`${this.baseUrl}/users/me`, {
       headers: this.headers
