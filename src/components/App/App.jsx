@@ -23,7 +23,6 @@ import statusSuccessImage from '../../images/success.svg';
 import statusErrorImage from '../../images/error.svg';
 import {AppContext} from "../../contexts/AppContext";
 import {CurrentUserContext} from "../../contexts/CurrentUserContext";
-import {auth} from "../../utils/auth";
 import ProtectedRoute from "../../hoc/ProtectedRoute";
 import {api} from "../../utils/MainApi";
 import * as moviesApi from '../../utils/MoviesApi';
@@ -35,6 +34,8 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);                                                   // Стейт-переменная статус пользователя, вход в систему
   const [movies, setMovies] = useState([]);
   const [savedMovies, setSavedMovies] = useState([]);
+  const [initialMovies, setInitialMovies] = useState([]);
+  const [initialSavedMovies, setInitialSavedMovies] = useState([]);
   const [isShortMovies, setIsShortMovies] = useState(false);
   const [notFound, setNotFound] = useState(false);
   const [moviesError, setMoviesError] = useState(false);
@@ -137,7 +138,7 @@ function App() {
   const tokenCheck = useCallback(() => {
     const token = localStorage.getItem('jwt');
     if (token) {
-      auth.getContent(token)
+      api.getContent(token)
         .then(res => {
           if (res) {
             setLoggedIn(true);
