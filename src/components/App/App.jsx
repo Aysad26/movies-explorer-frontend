@@ -194,6 +194,23 @@ function App() {
     return foundMovies;
   }
 
+  function getSavedMovies() {
+    api.getSavedMovies()
+      .then((movies) => {
+        setInitialSavedMovies(movies);
+        movies.forEach((movie) => {
+          const newSavedMovie = initialMovies.find(item => item.id === movie.movieId);
+          if (newSavedMovie !== undefined) {
+            newSavedMovie.saved = true;
+            setInitialMovies(initialMovies.map(item => item.id === movie.movieId ? newSavedMovie : item));
+          }
+        })
+      })
+      .catch(() => {
+        setInitialSavedMovies([]);
+      })
+  }
+
   function searchMovies(keyword) {
     setIsLoading(true);
     setMovies([]);
@@ -246,24 +263,28 @@ function App() {
   }
 
   function saveMovie(movie) {
-    return api.saveMovie(movie)
-      .then((movie) => {
-        setSavedMovies([savedMovies, movie])
+    api.saveMovie(movie)
+      .then(() => {
+        getSavedMovies();
+        const newSavedMovie = initialMovies.find(item => item.id === movie.id);
+        setInitialMovies(initialMovies.map(item => item.id === newSavedMovie.id ? newSavedMovie : item));
+        localStorage.setItem('movies', JSON.stringify(initialMovies));
       })
       .catch(err => console.log(`Error: ${err}`));
   }
 
   function deleteMovie(movieId) {
-    return api.deleteMovie(movieId)
+    api.deleteMovie(movieId)
       .then(() => {
-        const filteredSavedMovies = savedMovies.filter((item) => {
-          return item._id !== movieId
-        });
-        setSavedMovies(filteredSavedMovies);
-        localStorage.setItem('savedMovies', JSON.stringify(filteredSavedMovies));
+        getSavedMovies();
+        const deletedFilm = initialMovies.find(item => item.id === movieId);
+        delete deletedFilm.saved;
+        setInitialMovies(initialMovies.map(item => item.id === deletedFilm.id ? deletedFilm : item));
+        localStorage.setItem('movies', JSON.stringify(initialMovies));
       })
       .catch(err => console.log(`Error: ${err}`));
   }
+
 
   // Загрузка данных пользователя
   useEffect(() => {

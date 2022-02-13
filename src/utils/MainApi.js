@@ -96,14 +96,14 @@ class MainApi {
   }
 
   getSavedMovies() {
-    return fetch(`${this.baseUrl}/movies/`, {
+    return fetch(`${this.baseUrl}/movies`, {
       headers: this.headers
     })
       .then(handleOriginalResponse);
   }
 
-  deleteMovie(movieId) {
-    return fetch(`${this.baseUrl}/movies/${movieId}`, {
+  deleteMovie(id) {
+    return fetch(`${this.baseUrl}/movies/:${id}`, {
       method: 'DELETE',
       headers: this.headers,
     })
