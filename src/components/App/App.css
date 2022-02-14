@@ -9,6 +9,8 @@
     max-width: 100%;
     width: 1280px;
     scroll-behavior: smooth;
+    position: relative;
+    background-color: var(--page-color);
 }
 
 @media screen and (max-width: 425px) {

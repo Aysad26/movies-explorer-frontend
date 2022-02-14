@@ -1,19 +1,30 @@
-import Promo from "./Promo/Promo";
-import AboutProject from "./AboutProject/AboutProject";
-import Techs from "./Techs/Techs";
+import React from 'react';
+
 import AboutMe from "./AboutMe/AboutMe";
+import AboutProject from "./AboutProject/AboutProject";
 import Portfolio from "./Portfolio/Portfolio";
+import Promo from "./Promo/Promo";
+import Techs from "./Techs/Techs";
+import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
 import './Main.css';
 
-function Main() {
+function Main({loggedIn, windowWidth}) {
   return (
-    <main className="main">
-      <Promo />
-      <AboutProject />
-      <Techs />
-      <AboutMe />
-      <Portfolio />
-    </main>
+    <>
+      <Header
+        loggedIn={loggedIn}
+        windowWidth={windowWidth}
+      />
+      <main className='main'>
+        <Promo />
+        <AboutProject />
+        <Techs />
+        <AboutMe />
+        <Portfolio />
+      </main>
+      <Footer />
+    </>
   )
 }
 

@@ -1,120 +1,121 @@
-import handleOriginalResponse from './utils.js';
+import { MAIN_URL, MOVIES_URL, checkResponse } from './utils';
 
-class MainApi {
-  constructor(options) {
-    this.baseUrl = options.baseUrl;
-    this.headers = options.headers;
-  }
-
-  register = (name, email, password) => {
-    return fetch(`${this.baseUrl}/signup`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({name, email, password})
-    })
-      .then(handleOriginalResponse)
-      .then(data => {
-        if (data.token) {
-          localStorage.setItem('jwt', data.token);
-          return data;
-        }
-      })
-  }
-
-  login = (email, password) => {
-    return fetch(`${this.baseUrl}/signin`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({password, email})
-    })
-      .then(handleOriginalResponse)
-      .then(data => {
-        if (data.token) {
-          localStorage.setItem('jwt', data.token);
-          return data;
-        }
-      })
-  }
-
-  getContent = (token) => {
-    return fetch(`${this.baseUrl}/users/me`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        "Authorization": `Bearer ${token}`
-      },
-    })
-      .then(handleOriginalResponse)
-      .then(data => {
-        return data;
-      })
-  }
-
-
-  getUserInfo() {
-    return fetch(`${this.baseUrl}/users/me`, {
-      headers: this.headers
-    })
-      .then(handleOriginalResponse)
-      .then(data => {
-        return data
-      })
-  }
-
-  editProfile(name, email) {
-    return fetch(`${this.baseUrl}/users/me`, {
-      method: 'PATCH',
-      headers: this.headers,
-      body: JSON.stringify({name, email})
-    })
-      .then(handleOriginalResponse);
-  }
-
-  saveMovie(movieInfo) {
-    return fetch(`${this.baseUrl}/movies`, {
-      method: 'POST',
-      headers: this.headers,
-      body: JSON.stringify({
-        country: movieInfo.country,
-        director: movieInfo.director,
-        duration: movieInfo.duration,
-        year: movieInfo.year,
-        description: movieInfo.description,
-        image: movieInfo.image,
-        trailer: movieInfo.trailer,
-        nameRU: movieInfo.nameRU,
-        nameEN: movieInfo.nameEN,
-        thumbnail: movieInfo.thumbnail,
-        movieId: movieInfo.movieId,
-      })
-    })
-      .then(handleOriginalResponse);
-  }
-
-  getSavedMovies() {
-    return fetch(`${this.baseUrl}/movies`, {
-      headers: this.headers
-    })
-      .then(handleOriginalResponse);
-  }
-
-  deleteMovie(id) {
-    return fetch(`${this.baseUrl}/movies/:${id}`, {
-      method: 'DELETE',
-      headers: this.headers,
-    })
-      .then(handleOriginalResponse);
-  }
+export function register(name, email, password) {
+  return fetch(`${MAIN_URL}/signup`, {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ name, email, password }),
+  })
+    .then(checkResponse);
 }
 
-export const api = new MainApi({
-  baseUrl: 'https://api.mesto.aysad26.nomoredomains.work',
-  headers: {
-    authorization: `Bearer ${localStorage.getItem('jwt')}`,
-    'Content-Type': 'application/json'
-  }
-});
+export function authorize(email, password) {
+  return fetch(`${MAIN_URL}/signin`, {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ email, password }),
+  })
+    .then(checkResponse)
+}
+
+export function checkToken(jwt) {
+  return fetch(`${MAIN_URL}/users/me`, {
+    method: 'GET',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${jwt}`,
+    },
+  })
+    .then(checkResponse);
+}
+
+export function getUserInfo() {
+  return fetch(`${MAIN_URL}/users/me`, {
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
+    },
+  })
+    .then(checkResponse);
+}
+
+export function setUserInfo(data) {
+  return fetch(`${MAIN_URL}/users/me`, {
+    method: 'PATCH',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
+    },
+    body: JSON.stringify({
+      name: data.name,
+      email: data.email,
+    }),
+  })
+    .then(checkResponse);
+}
+
+export function saveMovie(movie) {
+  const {
+    country,
+    director,
+    duration,
+    year,
+    description,
+    nameRU,
+    nameEN,
+  } = movie;
+  return fetch(`${MAIN_URL}/movies`, {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+    },
+    body: JSON.stringify({
+      country,
+      director,
+      duration,
+      year,
+      description,
+      image: `${MOVIES_URL}${movie.image.url}`,
+      trailer: movie.trailerLink,
+      thumbnail: `${MOVIES_URL}${movie.image.formats.thumbnail.url}`,
+      nameRU,
+      nameEN,
+      movieId: movie.id,
+    })
+  })
+    .then(checkResponse);
+}
+
+export function deleteMovie(id) {
+  return fetch(`${MAIN_URL}/movies/${id}`, {
+    method: 'DELETE',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
+    },
+  })
+    .then(checkResponse);
+}
+
+export function getSavedMovies() {
+  return fetch(`${MAIN_URL}/movies`, {
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
+    },
+  })
+    .then(checkResponse);
+}

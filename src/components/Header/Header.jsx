@@ -1,13 +1,25 @@
+import React from 'react';
+import { useHistory } from 'react-router-dom';
+import Navigation from "./Navigation/Navigation";
 import logo from '../../images/logo.svg';
 import './Header.css';
-import Navigation from "./Navigation/Navigation";
-import {NavLink} from "react-router-dom";
 
-function Header({isLogin}) {
+function Header({loggedIn, windowWidth}) {
+  const history = useHistory();
+
+  function handleLogoClick() {
+    history.push('/');
+  }
+
   return (
     <header className='header'>
-      <NavLink className='header__logo logo' to='/'><img src={logo} alt="Логотип"/></NavLink>
-      <Navigation isLogin={isLogin} />
+      <div className='header__container'>
+        <img className='header__logo' src={logo} alt='Логотип сайта' onClick={handleLogoClick} />
+        <Navigation
+          loggedIn={loggedIn}
+          windowWidth={windowWidth}
+        />
+      </div>
     </header>
   )
 }
