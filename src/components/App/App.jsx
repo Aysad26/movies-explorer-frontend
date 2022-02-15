@@ -14,6 +14,7 @@ import NotFound from '../NotFound/NotFound';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import './App.css';
+import { getDuration } from '../../utils/constants';
 
 function App() {
   const [loggedIn, setLoggedIn] = React.useState(false);

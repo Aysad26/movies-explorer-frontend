@@ -1,3 +1,8 @@
+export const getDuration = (data) => {
+  const duration = `${Math.floor(data.duration / 60)}ч ${data.duration % 60}м`
+  return duration;
+};
+
 export const statusSuccessMessage = 'Вы успешно зарегистрировались!';
 export const statusLoadMessage = 'Идет загрузка...';
 export const statusEditMessage = 'Информация успешно изменена!';

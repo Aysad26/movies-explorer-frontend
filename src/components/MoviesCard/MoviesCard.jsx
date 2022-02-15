@@ -1,6 +1,7 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import movie from '../../images/movie.jpg'
+import { getDuration } from '../../utils/constants';
 import './MoviesCard.css';
 
 function MoviesCard({data, handleSaveMovie, handleDeleteMovie}) {
@@ -56,7 +57,7 @@ function MoviesCard({data, handleSaveMovie, handleDeleteMovie}) {
         <div className='card__container-info'>
           <p className='card__name'>{data.nameRU}</p>
           <div className='card__duration'>
-            <p className='card__duration-text'>{`${Math.floor(data.duration / 60)}ч ${data.duration % 60}м`}</p>
+            <p className='card__duration-text'>{getDuration(data)}</p>
           </div>
         </div>
         {(location === '/movies' && data.saved === true)
