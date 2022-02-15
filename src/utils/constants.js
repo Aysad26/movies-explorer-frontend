@@ -3,6 +3,11 @@ export const getDuration = (data) => {
   return duration;
 };
 
+export const cardsNumbers = {
+  desktopOrTablet: 7,
+  mobile: 5,
+};
+
 export const statusSuccessMessage = 'Вы успешно зарегистрировались!';
 export const statusLoadMessage = 'Идет загрузка...';
 export const statusEditMessage = 'Информация успешно изменена!';
