@@ -51,7 +51,7 @@ function MoviesCardList({isLoading, ...props}) {
     setInitialCardsAmount(prev => prev + addCardsAmount);
   }
 
-  const renderedMovies = Array.from(props.movies).slice(0, initialCardsAmount);
+  const renderedMovies = Array.from((props.movies).slice(0, initialCardsAmount));
 
   useEffect(() => {
     window.addEventListener('resize', handleResize);
