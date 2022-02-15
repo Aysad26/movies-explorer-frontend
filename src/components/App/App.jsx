@@ -14,7 +14,6 @@ import NotFound from '../NotFound/NotFound';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import './App.css';
-import { getDuration } from '../../utils/constants';
 
 function App() {
   const [loggedIn, setLoggedIn] = React.useState(false);
@@ -289,33 +288,19 @@ function App() {
           >
           </ProtectedRoute>
           <Route exact path='/signup'>
-            <Register
-              onRegister={handleRegister}
-              isLoading={isLoading}
-            />
+            {loggedIn ? <Redirect to='/' /> :
+              <Register
+                onRegister={handleRegister}
+                isLoading={isLoading}
+              />
+            }
           </Route>
           <Route exact path='/signin'>
-            <Login
-              onLogin={handleLogin}
-              isLoading={isLoading}
-            />
-          </Route>
-          <Route exact path='/movies'>
-            { loggedIn
-              ? <Redirect to='/movies' />
-              : <Redirect to='/' />
-            }
-          </Route>
-          <Route exact path='/saved-movies'>
-            { loggedIn
-              ? <Redirect to='/saved-movies' />
-              : <Redirect to='/' />
-            }
-          </Route>
-          <Route exact path='/profile'>
-            { loggedIn
-              ? <Redirect to='/profile' />
-              : <Redirect to='/' />
+            {loggedIn ? <Redirect to='/' /> :
+              <Login
+                onLogin={handleLogin}
+                isLoading={isLoading}
+              />
             }
           </Route>
           <Route path='/*'>
