@@ -25,19 +25,16 @@
 
 @media all and (max-width: 800px) {
   .welcome-screen {
-    width: 51.5625%;
+    width: 100%;
     padding: 0 0 40px;
   }
 }
 
 @media all and (max-width: 600px) {
  .welcome-screen {
-   width: 81.25%;
+   width: 100%;
    align-items: center;
    padding: 0 0 80px;
  }
 
-  .welcome-screen__logo {
-    margin-bottom: 50px;
-  }
 }

@@ -47,13 +47,13 @@
 
 @media all and (max-width: 800px) {
   .form__section {
-    width: 51.5625%;
+    width: 100%;
   }
 }
 
 @media all and (max-width: 600px) {
   .form__section {
-    width: 81.25%;
+    width: 100%;
   }
 
   .form__input {
