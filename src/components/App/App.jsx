@@ -281,6 +281,7 @@ function App() {
           <ProtectedRoute
             exact path='/profile'
             component={Profile}
+            windowWidth={windowWidth}
             loggedIn={loggedIn}
             onLogout={handleLogout}
             onUpdateUser={handleUpdateUser}

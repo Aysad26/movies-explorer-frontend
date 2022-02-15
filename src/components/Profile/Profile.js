@@ -5,7 +5,7 @@ import useValidator from '../../hooks/useValidator';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import './Profile.css';
 
-function Profile({loggedIn, onLogout, onUpdateUser}) {
+function Profile({loggedIn, onLogout, onUpdateUser, windowWidth}) {
   const [isEditActive, setIsEditActive] = React.useState(false);
   const [isSubmitButtonActive, setIsSubmitButtonActive] = React.useState(false);
   const { values, errors, isValid, handleChange } = useValidator();
@@ -49,7 +49,10 @@ function Profile({loggedIn, onLogout, onUpdateUser}) {
 
   return (
     <>
-      <Header loggedIn={loggedIn}/>
+       <Header
+        loggedIn={loggedIn}
+        windowWidth={windowWidth}
+      />
       <main className='profile'>
         <h1 className='profile__title'>Привет, {currentUser.name}!</h1>
         <form className='profile__container' id='profile' onSubmit={handleSubmit} noValidate>
