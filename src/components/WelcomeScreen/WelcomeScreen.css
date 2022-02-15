@@ -26,15 +26,15 @@
 @media all and (max-width: 800px) {
   .welcome-screen {
     width: 100%;
-    padding: 0 0 40px;
+    padding: 70 0 40px;
+    align-items: center;
   }
 }
 
 @media all and (max-width: 600px) {
  .welcome-screen {
    width: 100%;
-   align-items: center;
-   padding: 0 0 80px;
+   padding: 56 0 80px;
  }
 
 }
