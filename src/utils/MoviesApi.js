@@ -1,12 +1,11 @@
-import handleOriginalResponse from './utils.js';
+import { MOVIES_URL, checkResponse } from './utils';
 
-export const getMovies = () => {
-  return fetch("https://api.nomoreparties.co/beatfilm-movies", {
-    method: "GET",
+export function getMovies() {
+  return fetch(`${MOVIES_URL}/beatfilm-movies`, {
     headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json"
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
     },
   })
-    .then(handleOriginalResponse)
-};
+    .then(checkResponse);
+}

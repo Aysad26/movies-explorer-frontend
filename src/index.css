@@ -10,17 +10,14 @@
   --gray-color-most-dark: #A0A0A0;
   --gray-color-more-dark: #E8E8E8;
   --black-color: #000000;
-
 }
 
 body {
   margin: 0;
   min-height: 100vh;
-  background-color: var(--page-color);
   font-family: 'Inter', 'Arial', sans-serif;
   font-weight: 400;
   color: var(--black-color);
-
 
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;

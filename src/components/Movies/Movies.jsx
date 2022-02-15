@@ -1,20 +1,36 @@
+import React from 'react';
+import SearchForm from '../SearchForm/SearchForm';
+import MoviesCardList from '../MoviesCardList/MoviesCardList';
+import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
+import Preloader from '../Preloader/Preloader';
 import './Movies.css';
-import SearchForm from "../SearchForm/SearchForm";
-import MoviesCardList from "../MoviesCardList/MoviesCardList";
 
-function Movies({isLoading, ...props}) {
+function Movies({movies, loggedIn, isLoading, handleSearch, windowWidth, handleSaveMovie, handleDeleteMovie, moviesMessage}) {
   return (
-    <main className='movies'>
-      <SearchForm handleSearchMovies={props.handleSearchMovies}
-                  isShortMovies={props.isShortMovies}
-                  handleShortMovies={props.handleShortMovies}/>
-      <MoviesCardList isLoading={isLoading}
-                      movies={props.movies}
-                      moviesError={props.moviesError}
-                      notFound={props.notFound}
-                      handleSaveMovie={props.handleSaveMovie}
-                      handleDeleteMovie={props.handleDeleteMovie}/>
-    </main>
+    <>
+      <Header
+        loggedIn={loggedIn}
+        windowWidth={windowWidth}
+      />
+      <main className='movies'>
+        <SearchForm
+          handleSearch={handleSearch}
+          windowWidth={windowWidth}
+        />
+        {isLoading
+          ? <Preloader />
+          : <MoviesCardList
+              movies={movies}
+              windowWidth={windowWidth}
+              handleSaveMovie={handleSaveMovie}
+              handleDeleteMovie={handleDeleteMovie}
+              moviesMessage={moviesMessage}
+            />
+        }
+      </main>
+      <Footer />
+    </>
   )
 }
 

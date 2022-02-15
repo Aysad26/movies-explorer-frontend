@@ -1,95 +1,78 @@
+import React from 'react';
+import { useLocation } from 'react-router-dom';
+import MoviesCard from '../MoviesCard/MoviesCard';
+import MoreButton from '../MoreButton/MoreButton';
 import './MoviesCardList.css';
-import MoviesCard from "../MoviesCard/MoviesCard";
-import Preloader from "../Preloader/Preloader";
-import {useEffect, useState} from "react";
 
-function MoviesCardList({isLoading, ...props}) {
-  const [initialCardsAmount, setInitialCardsAmount] = useState(() => {
-    const size = window.innerWidth;
-    if (size < 720) {
-      return 5;
-    } else if (size < 920) {
-      return 5;
-    } else if (size < 1279) {
-      return 7;
-    } else if (size > 1279) {
-      return 7;
-    }
-  })
+function MoviesCardList({movies, windowWidth, handleSaveMovie, handleDeleteMovie, moviesMessage}) {
+  const [renderedMoviesList, setRenderedMoviesList] = React.useState([]);
+  const [isButtonActive, setIsButtonActive] = React.useState(false);
+  const [renderedCardsCount, setRenderedCardsCount] = React.useState(12);
+  const [addedCardsCount, setAddedCardsCount] = React.useState(0);
 
-  const [addCardsAmount, setAddMoreCardsAmount] = useState(() => {
-    const size = window.innerWidth;
-    if (size < 720) {
-      return 2;
-    } else if (size < 920) {
-      return 2;
-    } else if (size < 1279) {
-      return 3;
-    } else if (size > 1279) {
-      return 3;
-    }
-  })
+  const location = useLocation().pathname;
 
-  function handleResize() {
-    const size = window.innerWidth;
-    if (size < 720) {
-      setInitialCardsAmount(5);
-      setAddMoreCardsAmount(2);
-    } else if (size < 920) {
-      setInitialCardsAmount(8);
-      setAddMoreCardsAmount(2);
-    } else if (size < 1279) {
-      setInitialCardsAmount(12);
-      setAddMoreCardsAmount(3);
-    } else if (size > 1279) {
-      setInitialCardsAmount(12);
-      setAddMoreCardsAmount(4);
+  function cardsCount() {
+    if (windowWidth >= 1100) {
+      setRenderedCardsCount(7);
+      setAddedCardsCount(7);
+    } else if (windowWidth < 1100 && windowWidth > 600) {
+      setRenderedCardsCount(5);
+      setAddedCardsCount(5);
+    } else {
+      setRenderedCardsCount(3);
+      setAddedCardsCount(3);
     }
   }
 
-  function handleAddMovies() {
-    setInitialCardsAmount(prev => prev + addCardsAmount);
+  function handleMoreClick() {
+    setRenderedMoviesList(movies.slice(0, renderedMoviesList.length + addedCardsCount));
+    if (renderedMoviesList.length >= movies.length - addedCardsCount) {
+      setIsButtonActive(false);
+    }
   }
 
-  const renderedMovies = Array.from((props.movies).slice(0, initialCardsAmount));
+  React.useEffect(() => {
+    cardsCount();
+  }, [windowWidth]);
 
-  useEffect(() => {
-    window.addEventListener('resize', handleResize);
-  }, [])
+  React.useEffect(() => {
+    if (location === '/movies') {
+      setRenderedMoviesList(movies.slice(0, renderedCardsCount));
+      if (movies.length <= renderedCardsCount) {
+        setIsButtonActive(false);
+      } else {
+        setIsButtonActive(true);
+      }
+    } else {
+      setRenderedMoviesList(movies);
+      setIsButtonActive(false);
+    }
+  }, [movies]);
+
+
 
   return (
     <>
-      {isLoading && <Preloader/>}
-      <span className={`movies-card-list__span ${!props.moviesError && 'movies-card-list__span_hidden'}`}
-      >Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен.</span>
-      <span
-        className={`movies-card-list__span ${!props.notFound && 'movies-card-list__span_hidden'}`}
-      >Ничего не найдено :c</span>
-      <span
-        className={`movies-card-list__span ${(props.isSavedMovies && props.movies.length === 0) ? '' : 'movies-card-list__span_hidden'}`}
-      >Вы ещё ничего не сохраняли</span>
-
-      <section className='movies-card-list'>
-
-        {renderedMovies.map((movie) => {
-          return <MoviesCard
-            key={props.isSavedMovies ? movie.movieId : movie.id}
-            movie={movie}
-            handleSaveMovie={props.handleSaveMovie}
-            handleDeleteMovie={props.handleDeleteMovie}
-            isSavedMovies={props.isSavedMovies}
-          />
-        })}
-
+      <section className='movies__cards'>
+        {movies.length === 0
+          ? <p className='movies-card-list__span'>{moviesMessage}</p>
+          : <ul className='movies-card-list'>
+              {renderedMoviesList.map(data => {
+                return (
+                  <MoviesCard
+                    key={location === '/movies' ? data.id : data._id}
+                    data={data}
+                    handleSaveMovie={handleSaveMovie}
+                    handleDeleteMovie={handleDeleteMovie}
+                  />
+                )
+              })
+            }
+        </ul>
+        }
       </section>
-      <section className='movies-card-list__container'>
-        <button
-          className={`movies-card-list__btn ${props.isSavedMovies ? 'movies-card-list__btn_hidden'
-            : `${props.movies.length === renderedMovies.length ? 'movies-card-list__btn_hidden' : ''}`}`}
-          onClick={handleAddMovies}
-        >Ещё
-        </button>
-      </section>
+      <MoreButton onMoreClick={handleMoreClick} isButtonActive={isButtonActive} />
     </>
   )
 }
