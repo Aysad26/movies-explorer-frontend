@@ -27,7 +27,6 @@
   .welcome-screen {
     width: 100%;
     padding: 70 0 40px;
-    align-items: center;
   }
 }
 
@@ -35,6 +34,7 @@
  .welcome-screen {
    width: 100%;
    padding: 56 0 80px;
+   align-items: center;
  }
 
 }
