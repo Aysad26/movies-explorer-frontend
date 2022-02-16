@@ -4,7 +4,7 @@ import Submit from '../Submit/Submit';
 import useValidator from '../../hooks/useValidator';
 import './Form.css';
 
-function Form({buttonText, descriptionMessage, formId, linkMessage, onRegister, onLogin}) {
+function Form({buttonText, descriptionMessage, formId, linkMessage, onRegister, onLogin, isLoading}) {
   const { values, errors, isValid, handleChange, resetForm } = useValidator();
   const location = useLocation().pathname;
   const focus = React.useRef();
@@ -46,6 +46,7 @@ function Form({buttonText, descriptionMessage, formId, linkMessage, onRegister, 
           onChange={handleChange}
           value={values.name || ''}
           required
+          disabled={isLoading ? true : false}
         />
         }
         {location === '/signup' &&
@@ -66,6 +67,7 @@ function Form({buttonText, descriptionMessage, formId, linkMessage, onRegister, 
           value={values.email || ''}
           required
           pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+          disabled={isLoading ? true : false}
         />
         <span
           className='form__error'
@@ -83,6 +85,7 @@ function Form({buttonText, descriptionMessage, formId, linkMessage, onRegister, 
           onChange={handleChange}
           value={values.password || ''}
           required
+          disabled={isLoading ? true : false}
         />
         <span
           className='form__error'

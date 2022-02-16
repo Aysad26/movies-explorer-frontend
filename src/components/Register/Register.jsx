@@ -12,6 +12,7 @@ function Register({onRegister, isLoading}) {
         formId='register'
         linkMessage='Войти'
         onRegister={onRegister}
+        isLoading={isLoading}
       />
     </main>
   )

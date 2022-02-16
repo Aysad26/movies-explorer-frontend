@@ -12,6 +12,7 @@ function Login({onLogin, isLoading}) {
         formId='login'
         linkMessage='Регистрация'
         onLogin={onLogin}
+        isLoading={isLoading}
       />
     </main>
   )

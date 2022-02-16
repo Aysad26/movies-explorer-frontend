@@ -5,7 +5,7 @@ import useValidator from '../../hooks/useValidator';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import './Profile.css';
 
-function Profile({loggedIn, onLogout, onUpdateUser, windowWidth}) {
+function Profile({loggedIn, onLogout, onUpdateUser, windowWidth, isLoading}) {
   const [isEditActive, setIsEditActive] = React.useState(false);
   const [isSubmitButtonActive, setIsSubmitButtonActive] = React.useState(false);
   const { values, errors, isValid, handleChange } = useValidator();
@@ -75,6 +75,7 @@ function Profile({loggedIn, onLogout, onUpdateUser, windowWidth}) {
                   onChange={checkNameInput}
                   value={values.name || ''}
                   required
+                  disabled={isLoading ? true : false}
                 />
               : <p className='profile__placeholder'>{currentUser.name}</p>
             }
@@ -102,6 +103,7 @@ function Profile({loggedIn, onLogout, onUpdateUser, windowWidth}) {
                   onChange={checkEmailInput}
                   value={values.email || ''}
                   required
+                  disabled={isLoading ? true : false}
                 />
               : <p className='profile__placeholder'>{currentUser.email}</p>
             }

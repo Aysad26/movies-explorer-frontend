@@ -292,6 +292,7 @@ function App() {
             loggedIn={loggedIn}
             onLogout={handleLogout}
             onUpdateUser={handleUpdateUser}
+            isLoading={isLoading}
           >
           </ProtectedRoute>
           <Route exact path='/signup'>
