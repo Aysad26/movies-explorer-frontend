@@ -75,6 +75,8 @@ function App() {
     localStorage.removeItem('jwt');
     history.push('/');
     setLoggedIn(false);
+    setMovies([]);
+    setSavedMovies([]);
     localStorage.clear();
   }
 
