@@ -16,11 +16,13 @@ function MoviesCard({data, handleSaveMovie, handleDeleteMovie}) {
     setIsShown(true);
   }
 
-  function handleSave() {
+  function handleSave(evt) {
+    evt.preventDefault();
     handleSaveMovie(data);
   }
 
-  function handleDelete() {
+  function handleDelete(evt) {
+    evt.preventDefault();
     handleDeleteMovie(data);
   }
 

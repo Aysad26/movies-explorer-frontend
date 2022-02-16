@@ -74,14 +74,17 @@ function App() {
   function handleLogout() {
     localStorage.removeItem('jwt');
     history.push('/');
-    setCurrentUser({ _id: '', name: '', email: '' });
     setLoggedIn(false);
+    setCurrentUser({
+      _id: '',
+      name: '',
+      email: ''
+    });
     setMovies([]);
-    setSavedMovies([]);
     localStorage.clear();
   }
 
-  function getToken() {
+ function getToken() {
     const jwt = localStorage.getItem('jwt')
     if (jwt) {
       setToken(jwt);
@@ -109,7 +112,6 @@ function App() {
   }
 
   function getSavedMovies() {
-    setIsLoading(true);
     api.getSavedMovies()
       .then((movies) => {
         setInitialSavedMovies(movies);
@@ -123,9 +125,6 @@ function App() {
       })
       .catch(() => {
         setInitialSavedMovies([]);
-      })
-      .finally(() => {
-        setIsLoading(false);
       })
   }
 
@@ -292,7 +291,6 @@ function App() {
             loggedIn={loggedIn}
             onLogout={handleLogout}
             onUpdateUser={handleUpdateUser}
-            isLoading={isLoading}
           >
           </ProtectedRoute>
           <Route exact path='/signup'>
