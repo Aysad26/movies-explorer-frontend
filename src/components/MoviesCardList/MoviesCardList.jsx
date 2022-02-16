@@ -2,7 +2,9 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 import MoviesCard from '../MoviesCard/MoviesCard';
 import MoreButton from '../MoreButton/MoreButton';
+import { cardsNumbers } from '../../utils/constants';
 import './MoviesCardList.css';
+
 
 function MoviesCardList({movies, windowWidth, handleSaveMovie, handleDeleteMovie, moviesMessage}) {
   const [renderedMoviesList, setRenderedMoviesList] = React.useState([]);
@@ -13,15 +15,12 @@ function MoviesCardList({movies, windowWidth, handleSaveMovie, handleDeleteMovie
   const location = useLocation().pathname;
 
   function cardsCount() {
-    if (windowWidth >= 1100) {
-      setRenderedCardsCount(7);
-      setAddedCardsCount(7);
-    } else if (windowWidth < 1100 && windowWidth > 600) {
-      setRenderedCardsCount(5);
-      setAddedCardsCount(5);
+    if (windowWidth >= 650) {
+      setRenderedCardsCount(cardsNumbers.desktopOrTablet);
+      setAddedCardsCount(cardsNumbers.desktopOrTablet);
     } else {
-      setRenderedCardsCount(3);
-      setAddedCardsCount(3);
+      setRenderedCardsCount(cardsNumbers.mobile);
+      setAddedCardsCount(cardsNumbers.mobile);
     }
   }
 

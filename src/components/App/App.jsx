@@ -281,39 +281,26 @@ function App() {
           <ProtectedRoute
             exact path='/profile'
             component={Profile}
+            windowWidth={windowWidth}
             loggedIn={loggedIn}
             onLogout={handleLogout}
             onUpdateUser={handleUpdateUser}
           >
           </ProtectedRoute>
           <Route exact path='/signup'>
-            <Register
-              onRegister={handleRegister}
-              isLoading={isLoading}
-            />
+            {loggedIn ? <Redirect to='/' /> :
+              <Register
+                onRegister={handleRegister}
+                isLoading={isLoading}
+              />
+            }
           </Route>
           <Route exact path='/signin'>
-            <Login
-              onLogin={handleLogin}
-              isLoading={isLoading}
-            />
-          </Route>
-          <Route exact path='/movies'>
-            { loggedIn
-              ? <Redirect to='/movies' />
-              : <Redirect to='/' />
-            }
-          </Route>
-          <Route exact path='/saved-movies'>
-            { loggedIn
-              ? <Redirect to='/saved-movies' />
-              : <Redirect to='/' />
-            }
-          </Route>
-          <Route exact path='/profile'>
-            { loggedIn
-              ? <Redirect to='/profile' />
-              : <Redirect to='/' />
+            {loggedIn ? <Redirect to='/' /> :
+              <Login
+                onLogin={handleLogin}
+                isLoading={isLoading}
+              />
             }
           </Route>
           <Route path='/*'>
