@@ -65,6 +65,7 @@ function Form({buttonText, descriptionMessage, formId, linkMessage, onRegister, 
           onChange={handleChange}
           value={values.email || ''}
           required
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
         />
         <span
           className='form__error'
