@@ -74,6 +74,7 @@ function App() {
   function handleLogout() {
     localStorage.removeItem('jwt');
     history.push('/');
+    setCurrentUser({ _id: '', name: '', email: '' });
     setLoggedIn(false);
     setMovies([]);
     setSavedMovies([]);
