@@ -109,6 +109,7 @@ function App() {
   }
 
   function getSavedMovies() {
+    setIsLoading(true);
     api.getSavedMovies()
       .then((movies) => {
         setInitialSavedMovies(movies);
@@ -122,6 +123,9 @@ function App() {
       })
       .catch(() => {
         setInitialSavedMovies([]);
+      })
+      .finally(() => {
+        setIsLoading(false);
       })
   }
 
