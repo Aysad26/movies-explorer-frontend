@@ -1,8 +1,11 @@
 import React from 'react';
-import searchIcon from '../../images/icon__search.svg';
 import './SearchForm.css';
+import {useLocation} from "react-router-dom";
+import SavedMovies from '../SavedMovies/SavedMovies';
 
 function SearchForm({handleSearch, windowWidth}) {
+  const location = useLocation();
+
   const [checked, setChecked] = React.useState(false);
   const [keyword, setKeyword] = React.useState('');
 
@@ -28,6 +31,15 @@ function SearchForm({handleSearch, windowWidth}) {
   React.useEffect(() => {
     handleSearch(checked)
   }, [checked])
+
+  React.useEffect(() => {
+    if (location.pathname === "/saved-movies") {
+      setChecked(false);
+      setKeyword('');
+    } else {
+      setKeyword(localStorage.getItem('keyword'))
+    }
+  }, [location.pathname]);
 
   return (
     <section className='search'>
