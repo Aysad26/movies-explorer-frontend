@@ -1,43 +1,19 @@
-import './Register.css';
-import logo from '../../images/logo.svg';
-import {Link, NavLink} from "react-router-dom";
+import React from 'react';
+import WelcomeScreen from '../WelcomeScreen/WelcomeScreen';
+import Form from '../Form/Form';
 
-function Register() {
+function Register({onRegister, isLoading}) {
   return (
     <main className='register'>
-      <NavLink className='header__logo register__logo' to='/'><img src={logo} alt="Логотип"/></NavLink>
-      <h1 className='register__head'>Добро пожаловать!</h1>
-      <form className='register__form'>
-        <label className='register__form_label'>Имя</label>
-        <input
-          required
-          autoComplete='off'
-          className='register__form_input'
-          type="text"
-          name="name"/>
-        <label className='register__form_label'>E-mail</label>
-        <input
-          required
-          autoComplete='off'
-          className='register__form_input'
-          type="email"
-          name="email"/>
-        <div className='register__input-container'>
-          <label className='register__form_label'>Пароль</label>
-          <input
-            required
-            autoComplete='off'
-            className='register__form_input error'
-            type="password"
-            name="password"/>
-          <span className='register__form_span'>Что-то пошло не так...</span>
-        </div>
-        <button type='submit' className='register_btn'>Зарегистрироваться</button>
-      </form>
-      <div className='register__in'>
-        <p>Уже зарегистрированы?</p>
-        <Link to='/signin'>Войти</Link>
-      </div>
+      <WelcomeScreen title='Добро пожаловать!' />
+      <Form
+        buttonText={isLoading ? 'Регистрация...' : 'Зарегистрироваться'}
+        descriptionMessage='Уже зарегистрированы?'
+        formId='register'
+        linkMessage='Войти'
+        onRegister={onRegister}
+        isLoading={isLoading}
+      />
     </main>
   )
 }

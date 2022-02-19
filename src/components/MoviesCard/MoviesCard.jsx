@@ -1,37 +1,88 @@
+import React from 'react';
+import { useLocation } from 'react-router-dom';
+import movie from '../../images/movie.jpg'
+import { getDuration } from '../../utils/constants';
 import './MoviesCard.css';
 
-function MoviesCard({preview, name, duration, saved, lk}) {
+function MoviesCard({data, handleSaveMovie, handleDeleteMovie}) {
+  const [isShown, setIsShown] = React.useState(false);
+  const location = useLocation().pathname;
+
+  function handleSaveButtonDisactive() {
+    setIsShown(false);
+  }
+
+  function handleSaveButtonActive() {
+    setIsShown(true);
+  }
+
+  function handleSave(evt) {
+    evt.preventDefault();
+    handleSaveMovie(data);
+  }
+
+  function handleDelete(evt) {
+    evt.preventDefault();
+    handleDeleteMovie(data);
+  }
+
+  function handleImageClick() {
+    location === '/movies'
+    ? window.open(data.trailerLink, '_blank')
+    : window.open(data.trailer, '_blank')
+  }
+
   return (
-    <>
-      {lk ? saved ?
-        <div className='movies-card'>
-          <div className='movies-card__info'>
-            <div className='movies-card__container'>
-              <h3 className='movies-card__info_head'>{name}</h3>
-              <p className='movies-card__info_dur'>{duration}</p>
-            </div>
-            <button type='button' className='movies-card__info_delete'/>
-          </div>
-          <div className='movies-card__item'>
-            <img className='movies-card__item_img' src={`${preview}`} alt={name}/>
+    <li
+      className='card'
+      id={location === '/movies' ? data.id : data._id}
+      onMouseOver={handleSaveButtonActive}
+      onMouseOut={handleSaveButtonDisactive}
+    >
+      <div className="card__container-img">
+        {location === '/saved-movies'
+          ? <img
+              className='card__image'
+              src={data.image !== null ? data.image : movie}
+              alt={data.nameRU}
+              onClick={handleImageClick}
+            />
+          : <img
+              className='card__image'
+              src={data.image !== null ? `https://api.nomoreparties.co${data.image.url}` : movie}
+              alt={data.nameRU}
+              onClick={handleImageClick}
+            />
+        }
+      </div>
+      <div className='card__container'>
+        <div className='card__container-info'>
+          <p className='card__name'>{data.nameRU}</p>
+          <div className='card__duration'>
+            <p className='card__duration-text'>{getDuration(data)}</p>
           </div>
         </div>
-        : undefined
+        {(location === '/movies' && data.saved === true)
+        &&
+        <div className='card__saved' onClick={handleDelete} />}
+        {(location === '/movies' && data.saved !== true)
+        &&
+        <button
+          className={`card__save ${isShown && 'card__save_active'}`}
+          type='button'
+          onClick={handleSave}
+        >
 
-        : <div className='movies-card'>
-          <div className='movies-card__info'>
-            <div className='movies-card__container'>
-              <h3 className='movies-card__info_head'>{name}</h3>
-              <p className='movies-card__info_dur'>{duration}</p>
-            </div>
-            {saved ? <button type='button' className='movies-card__info_saved'/> :
-              <button type='button' className='movies-card__info_save'></button>}
-          </div>
-          <div className='movies-card__item'>
-            <img className='movies-card__item_img' src={`${preview}`} alt={name}/>
-          </div>
-        </div>}
-    </>
+        </button>}
+        {location === '/saved-movies'
+        &&
+        <button
+          className={`card__delete ${isShown && 'card__save_active'}`}
+          type='button'
+          onClick={handleDelete}
+        />}
+      </div>
+    </li>
   )
 }
 

@@ -1,18 +1,36 @@
+import React from 'react';
+import SearchForm from '../SearchForm/SearchForm';
+import MoviesCardList from '../MoviesCardList/MoviesCardList';
+import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
+import Preloader from '../Preloader/Preloader';
 import './Movies.css';
-import SearchForm from "../SearchForm/SearchForm";
-// import Preloader from "./Preloader/Preloader";
-import MoviesCardList from "../MoviesCardList/MoviesCardList";
 
-function Movies() {
+function Movies({movies, loggedIn, isLoading, handleSearch, windowWidth, handleSaveMovie, handleDeleteMovie, moviesMessage}) {
   return (
-    <main className='movies'>
-      <SearchForm/>
-      {/*<Preloader />*/}
-      <MoviesCardList/>
-      <section className='movies-card-list__container'>
-        <button className='movies-card-list__btn'>Ещё</button>
-      </section>
-    </main>
+    <>
+      <Header
+        loggedIn={loggedIn}
+        windowWidth={windowWidth}
+      />
+      <main className='movies'>
+        <SearchForm
+          handleSearch={handleSearch}
+          windowWidth={windowWidth}
+        />
+        {isLoading
+          ? <Preloader />
+          : <MoviesCardList
+              movies={movies}
+              windowWidth={windowWidth}
+              handleSaveMovie={handleSaveMovie}
+              handleDeleteMovie={handleDeleteMovie}
+              moviesMessage={moviesMessage}
+            />
+        }
+      </main>
+      <Footer />
+    </>
   )
 }
 
